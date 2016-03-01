@@ -19,7 +19,7 @@ def validIP(ip):
 
 def askUserForInput():
     userInputList = list()
-    question = raw_input("Do you want to search by IP or Port? ")
+    question = raw_input("Do you want to search by \"IP\" or \"Port\"? ")
     if question.lower() == "ip":
         while True:
             inputList = raw_input("Please Enter IP Address or Quit: ")
@@ -60,11 +60,13 @@ def getInfomation(jsonData, userInput):
                 time = re.split(r"[-T:.+]", jsonData['timestamp']['$date'])
                 print str(datetime.date(int(time[0]), int(time[1]), int(time[2]))) + "\n"
 
-userInputs = askUserForInput()
+while True:
+    userInputs = askUserForInput()
+    if userInputs[0]:
+        break
 
-if userInputs[0]:
-    with open("honeypot.json") as f:
-        for line in f:
-            data.append(json.loads(line))
-    for jsonData in data:
-        getInfomation(jsonData, userInputs[1])
+with open("honeypot.json") as f:
+    for line in f:
+        data.append(json.loads(line))
+for jsonData in data:
+    getInfomation(jsonData, userInputs[1])
