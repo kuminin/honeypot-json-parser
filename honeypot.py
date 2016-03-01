@@ -52,15 +52,13 @@ def printData(data):
             print key + " : " + str(data[key])
 
 def getInfomation(jsonData, userInput):
-    for key in jsonData:
-        if key == 'payload':
-            obj = json.loads(jsonData['payload'])
-            for uIn in userInput:
-                for key in obj:
-                    if str(obj[key]) == uIn:
-                        printData(obj)
-                        time = re.split(r"[-T:.+]", jsonData['timestamp']['$date'])
-                        print str(datetime.date(int(time[0]), int(time[1]), int(time[2]))) + "\n"
+    obj = json.loads(jsonData['payload'])
+    for uIn in userInput:
+        for key in obj:
+            if str(obj[key]) == uIn:
+                printData(obj)
+                time = re.split(r"[-T:.+]", jsonData['timestamp']['$date'])
+                print str(datetime.date(int(time[0]), int(time[1]), int(time[2]))) + "\n"
 
 userInputs = askUserForInput()
 
