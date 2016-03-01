@@ -63,7 +63,6 @@ def getInfomation(jsonData, userInput):
                         print str(datetime.date(int(time[0]), int(time[1]), int(time[2]))) + "\n"
 
 userInputs = askUserForInput()
-print userInputs
 
 if userInputs[0]:
     with open("honeypot.json") as f:
